@@ -2,6 +2,11 @@
 This repository containes the impelmetation of MPC algorithm proposed in Real-Time Multi-Convex Model Predictive Control for Occlusion-Free Target Tracking with Quadrotors paper.
 
 ## Installation procedure
+
+#Dependecies:
+[AutoChaser](https://github.com/icsl-Jeon/traj_gen_vis)
+[eigen_quad_prog](https://github.com/jrl-umi3218/eigen-quadprog)
+[bebop_simulator](https://github.com/gstavrinos/bebop_simulator)
 ``` 
 cd your_catkin_ws/src
 git clone https://github.com/Houman-HM/multi-convex-mpc-target-tarcker.git
@@ -13,7 +18,7 @@ There are several launch files for different Gazebo setups for different number 
 For example in order to run the MPC for tracking a target in a world with 6 obstacles, follow the precedure below:
 In the first terminal:
 ```
-6_cylinder_world_dynamic.launch
+rosrun target_tracker 6_cylinder_world_dynamic.launch
 ```
 In the second terminal:
 ```
