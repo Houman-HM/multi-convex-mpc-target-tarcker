@@ -1,13 +1,14 @@
 # multi-convex-mpc-target-tarcker
 This repository containes the impelmetation of MPC algorithm proposed in Real-Time Multi-Convex Model Predictive Control for Occlusion-Free Target Tracking with Quadrotors paper.
 
-## Installation procedure
-
 # Dependecies:
 
 * [eigen_quad_prog](https://github.com/jrl-umi3218/eigen-quadprog)
 * [bebop_simulator](https://github.com/gstavrinos/bebop_simulator)
 * [AutoChaser](https://github.com/icsl-Jeon/traj_gen_vis)
+
+## Installation procedure
+After installing the dependencies, you can build our propsed MPC package using as follows:
 ``` 
 cd your_catkin_ws/src
 git clone https://github.com/Houman-HM/multi-convex-mpc-target-tarcker.git
