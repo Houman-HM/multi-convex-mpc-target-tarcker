@@ -8,7 +8,7 @@ This repository containes the impelmetation of MPC algorithm proposed in Real-Ti
 * [AutoChaser](https://github.com/icsl-Jeon/traj_gen_vis)
 
 ## Installation procedure
-After installing the dependencies, you can build our propsed MPC package using as follows:
+After installing the dependencies, you can build our propsed MPC package as follows:
 ``` 
 cd your_catkin_ws/src
 git clone https://github.com/Houman-HM/multi-convex-mpc-target-tarcker.git
