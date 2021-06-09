@@ -19,10 +19,6 @@ find_package(Eigen3)
 find_package(eigen-quadprog)
 
 catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES fov_const_drone_cpp
-#  CATKIN_DEPENDS NumCpp roscpp tf
-#  DEPENDS system_lib
 )
 
 include_directories(
