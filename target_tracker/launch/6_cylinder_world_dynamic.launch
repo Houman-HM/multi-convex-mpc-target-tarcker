@@ -1,0 +1,166 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="paused" default="false"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
+  <!-- <env name="GAZEBO_MODEL_PATH" value="$(find drone_project)/models:$GAZEBO_MODEL_PATH" /> -->
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    <arg name="gui" value="$(arg gui)"/>
+    <arg name="headless" value="$(arg headless)"/>
+    <arg name="debug" value="$(arg debug)"/>
+  </include>
+
+    <arg name="obstacle_1" default="$(find target_tracker)/urdf/cylinder_1.urdf"/>
+    <arg name="obstacle_2" default="$(find target_tracker)/urdf/cylinder_2.urdf"/>
+    <arg name="obstacle_3" default="$(find target_tracker)/urdf/cylinder_3.urdf" />
+
+    <arg name="obstacle_4" default="$(find target_tracker)/urdf/cylinder_4.urdf"/>
+    <arg name="obstacle_5" default="$(find target_tracker)/urdf/cylinder_5.urdf"/>
+    <arg name="obstacle_6" default="$(find target_tracker)/urdf/cylinder_6.urdf" />
+
+    <arg name="target" default="$(find target_tracker)/urdf/target.urdf" />
+
+    <arg name="robot_1_name" default="obstacle_1" />
+    <arg name="robot_2_name" default="obstacle_2" />
+    <arg name="robot_3_name" default="obstacle_3" />
+
+
+    <arg name="robot_4_name" default="obstacle_4" />
+    <arg name="robot_5_name" default="obstacle_5" />
+    <arg name="robot_6_name" default="obstacle_6" />
+
+    <arg name="target_name" default="target" />
+
+
+    <arg name="x_1" default="3"/>
+    <arg name="y_1" default="0" />
+    <arg name="z_1" default="0.0" />
+    <arg name="roll_1" default="0.0"/>
+    <arg name="pitch_1" default="0"/>
+    <arg name="yaw_1" default="0" />
+    
+    <arg name="x_2" default="5.3" />
+    <arg name="y_2" default="2.7" />
+    <arg name="z_2" default="0.0" />
+    <arg name="roll_2" default="0.0"/>
+    <arg name="pitch_2" default="0"/>
+    <arg name="yaw_2" default="0" />
+
+    <arg name="x_3" default="5.3" />
+    <arg name="y_3" default="-2.3" />
+    <arg name="z_3" default="0.0" />
+    <arg name="roll_3" default="0.0"/>
+    <arg name="pitch_3" default="0"/>
+    <arg name="yaw_3" default="0" />
+
+    <arg name="x_4" default="9" />
+    <arg name="y_4" default="0" />
+    <arg name="z_4" default="0.0" />
+    <arg name="roll_4" default="0.0"/>
+    <arg name="pitch_4" default="0"/>
+    <arg name="yaw_4" default="0" />
+
+    <arg name="x_5" default="9" />
+    <arg name="y_5" default="3.5" />
+    <arg name="z_5" default="0.0" />
+    <arg name="roll_5" default="0.0"/>
+    <arg name="pitch_5" default="0"/>
+    <arg name="yaw_5" default="0" />
+
+    <arg name="x_6" default="9" />
+    <arg name="y_6" default="-3.5" />
+    <arg name="z_6" default="0.0" />
+    <arg name="roll_6" default="0.0"/>
+    <arg name="pitch_6" default="0"/>
+    <arg name="yaw_6" default="0" />
+
+
+    <arg name="drone_x" default="-2.0"/>
+    <arg name="drone_y" default="0"/>
+    <arg name="drone_z" default="0"/>
+    <arg name="drone_yaw" default="0.0"/>
+
+    <arg name="x_target" default="0.0" />
+    <arg name="y_target" default="0" />
+    <arg name="z_target" default="0.0" />
+    <arg name="roll_target" default="0.0"/>
+    <arg name="pitch_target" default="0"/>
+    <arg name="yaw_target" default="0" />
+
+
+  <include file="$(find bebop_gazebo)/launch/spawn_bebop.launch">
+    <arg name="x" value="$(arg drone_x)"/>
+    <arg name="y" value="$(arg drone_y)"/>
+    <arg name="z" value="$(arg drone_z)"/>
+    <arg name="Y" value="$(arg drone_yaw)"/>
+  </include>
+
+      <!-- <node name="spawn_helipad" pkg="gazebo_ros" type="spawn_model"
+      args="-file $(find drone_project)/models/marker2/model.sdf
+         -model marker2 -sdf
+         -x 5.0
+         -y 0.0
+         -z 0.3"
+      respawn="false" output="screen"/> -->
+
+
+        <param name="robot_description_1" command="cat $(arg obstacle_1)" />
+        <node name="$(arg robot_1_name)_urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+        args="-urdf -x $(arg x_1) -y $(arg y_1) -z $(arg z_1) -R $(arg roll_1) -P $(arg pitch_1) -Y $(arg yaw_1) -model $(arg robot_1_name) -param robot_description_1"/>
+
+        <param name="robot_description_2" command="cat $(arg obstacle_2)" />
+        <node name="$(arg robot_2_name)_urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+        args="-urdf -x $(arg x_2) -y $(arg y_2) -z $(arg z_2) -R $(arg roll_2) -P $(arg pitch_2) -Y $(arg yaw_2) -model $(arg robot_2_name) -param robot_description_2"/>
+        
+        <param name="robot_description_3" command="cat $(arg obstacle_3)" />
+        <node name="$(arg robot_3_name)_urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+        args="-urdf -x $(arg x_3) -y $(arg y_3) -z $(arg z_3) -R $(arg roll_3) -P $(arg pitch_3) -Y $(arg yaw_3) -model $(arg robot_3_name) -param robot_description_3"/>
+
+         
+        <param name="robot_description_4" command="cat $(arg obstacle_4)" />
+        <node name="$(arg robot_4_name)_urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+        args="-urdf -x $(arg x_4) -y $(arg y_4) -z $(arg z_4) -R $(arg roll_4) -P $(arg pitch_4) -Y $(arg yaw_4) -model $(arg robot_4_name) -param robot_description_4"/>
+
+         
+        <param name="robot_description_5" command="cat $(arg obstacle_5)" />
+        <node name="$(arg robot_5_name)_urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+        args="-urdf -x $(arg x_5) -y $(arg y_5) -z $(arg z_5) -R $(arg roll_5) -P $(arg pitch_5) -Y $(arg yaw_3) -model $(arg robot_5_name) -param robot_description_5"/>
+
+         
+        <param name="robot_description_6" command="cat $(arg obstacle_6)" />
+        <node name="$(arg robot_6_name)_urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+        args="-urdf -x $(arg x_6) -y $(arg y_6) -z $(arg z_6) -R $(arg roll_6) -P $(arg pitch_6) -Y $(arg yaw_6) -model $(arg robot_6_name) -param robot_description_6"/>
+
+        <param name="target_description" command="cat $(arg target)" />
+        <node name="$(arg target_name)_urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+        args="-urdf -x $(arg x_target) -y $(arg y_target) -z $(arg z_target) -R $(arg roll_target) -P $(arg pitch_target) -Y $(arg yaw_target) -model $(arg target_name) -param target_description"/>
+
+        <node pkg="tf" type="static_transform_publisher" name="obs_1_trans" args="0.0 0 2.5 0 0 0 box_1_base_footprint box_1 100"/>
+        <node pkg="tf" type="static_transform_publisher" name="obs_1_odom_trans" args="0.0 0 0 0 0 0 world obs_1/odom 100"/>
+
+        <node pkg="tf" type="static_transform_publisher" name="obs_2_trans" args="0.0 0 2.5 0 0 0 box_2_base_footprint box_2 100"/>
+        <node pkg="tf" type="static_transform_publisher" name="obs_2_odom_trans" args="0.0 0 0 0 0 0 world obs_2/odom 100"/>
+
+        <node pkg="tf" type="static_transform_publisher" name="obs_3_trans" args="0.0 0 2.5 0 0 0 box_3_base_footprint box_3 100"/>
+        <node pkg="tf" type="static_transform_publisher" name="obs_3_odom_trans" args="0.0 0 0 0 0 0 world obs_3/odom 100"/>
+
+        <node pkg="tf" type="static_transform_publisher" name="obs_4_trans" args="0.0 0 2.5 0 0 0 box_4_base_footprint box_4 100"/>
+        <node pkg="tf" type="static_transform_publisher" name="obs_4_odom_trans" args="0.0 0 0 0 0 0 world obs_4/odom 100"/>
+
+        <node pkg="tf" type="static_transform_publisher" name="obs_5_trans" args="0.0 0 2.5 0 0 0 box_5_base_footprint box_5 100"/>
+        <node pkg="tf" type="static_transform_publisher" name="obs_5_odom_trans" args="0.0 0 0 0 0 0 world obs_5/odom 100"/>
+
+        <node pkg="tf" type="static_transform_publisher" name="obs_6_trans" args="0.0 0 2.5 0 0 0 box_6_base_footprint box_6 100"/>
+        <node pkg="tf" type="static_transform_publisher" name="obs_6_odom_trans" args="0.0 0 0 0 0 0 world obs_6/odom 100"/>
+
+        <node pkg="tf" type="static_transform_publisher" name="target_trans" args="0.0 0 1.5 0 0 0 target/base_footprint pillar_box 100"/>
+        <node pkg="tf" type="static_transform_publisher" name="target_odom_trans" args="0.0 0 0 0 0 0 world target/odom 100"/>
+
+        <node pkg="tf" type="static_transform_publisher" name="bebop_trans" args="0.0 0 0 0 0 0 world odom 100"/>
+         <!-- <node type="rviz" name="rviz" pkg="rviz" args="-d $(find target_tracker)/config/bebop_config.rviz" /> -->
+</launch>

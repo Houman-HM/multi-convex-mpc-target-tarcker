@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <arg name="mav_name" default="firefly"/>
+  <arg name="target_name" default="target"/>
+  <arg name="world_name" default="3_wall"/>
+  <arg name="chaser_x" default="0"/>
+  <arg name="chaser_y" default="0"/>
+	<arg name="chaser_yaw" default="0.0"/>
+
+	<arg name="target_x" default="-1.57"/>
+	<arg name="target_y" default="-1.57"/>
+	<arg name="target_z" default="0"/>
+	<arg name="target_roll" default="-1.57"/>
+	<arg name="target_pitch" default="-1.57"/>
+	<arg name="target_yaw" default="-1.57"/>
+	
+	
+<arg name="obstacle_1" default="$(find target_tracker)/urdf/wall_1.urdf"/>
+<arg name="obstacle_2" default="$(find target_tracker)/urdf/wall_2.urdf"/>
+<arg name="obstacle_3" default="$(find target_tracker)/urdf/wall_3.urdf" />
+<arg name="target" default="$(find target_tracker)/urdf/target.urdf" />
+<arg name="drone" default="$(find target_tracker)/urdf/bebop.urdf" />
+
+<arg name="robot_1_name" default="obstacle_1" />
+<arg name="robot_2_name" default="obstacle_2" />
+<arg name="robot_3_name" default="obstacle_3" />
+<arg name="drone_name" default="quadrotor" />
+
+
+
+<arg name="x_1" default="3"/>
+<arg name="y_1" default="0" />
+<arg name="z_1" default="1.0" />
+<arg name="roll_1" default="0.0"/>
+<arg name="pitch_1" default="0"/>
+<arg name="yaw_1" default="1.57" />
+
+<arg name="x_2" default="6.5" />
+<arg name="y_2" default="-1.5" />
+<arg name="z_2" default="1.0" />
+<arg name="roll_2" default="0.0"/>
+<arg name="pitch_2" default="0"/>
+<arg name="yaw_2" default="1.57" />
+
+<arg name="x_3" default="7.5" />
+<arg name="y_3" default="1.5" />
+<arg name="z_3" default="1.0" />
+<arg name="roll_3" default="0.0"/>
+<arg name="pitch_3" default="0"/>
+<arg name="yaw_3" default="-1.57" />
+
+
+<arg name="drone_x" default="9"/>
+<arg name="drone_y" default="-1"/>
+<arg name="drone_z" default="0"/>
+<arg name="drone_yaw" default="2.58"/>
+
+<arg name="x_target" default="6.0" />
+<arg name="y_target" default="0" />
+<arg name="z_target" default="0.0" />
+<arg name="roll_target" default="0.0"/>
+<arg name="pitch_target" default="0"/>
+<arg name="yaw_target" default="0" />
+
+<param name="robot_description_1" command="cat $(arg obstacle_1)" />
+<node name="$(arg robot_1_name)_urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+args="-urdf -x $(arg x_1) -y $(arg y_1) -z $(arg z_1) -R $(arg roll_1) -P $(arg pitch_1) -Y $(arg yaw_1) -model $(arg robot_1_name) -param robot_description_1"/>
+
+<param name="robot_description_2" command="cat $(arg obstacle_2)" />
+<node name="$(arg robot_2_name)_urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+args="-urdf -x $(arg x_2) -y $(arg y_2) -z $(arg z_2) -R $(arg roll_2) -P $(arg pitch_2) -Y $(arg yaw_2) -model $(arg robot_2_name) -param robot_description_2"/>
+
+<param name="robot_description_3" command="cat $(arg obstacle_3)" />
+<node name="$(arg robot_3_name)_urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+args="-urdf -x $(arg x_3) -y $(arg y_3) -z $(arg z_3) -R $(arg roll_3) -P $(arg pitch_3) -Y $(arg yaw_3) -model $(arg robot_3_name) -param robot_description_3"/>
+
+<param name="target_description" command="cat $(arg target)" />
+
+
+   <node pkg="tf" type="static_transform_publisher" name="obs_1_trans" args="0.0 0 0 0 0 0 box_1_base_footprint box_1 100"/>
+		<node pkg="tf" type="static_transform_publisher" name="obs_1_odom_trans" args="0.0 0 0 0 0 0 world obs_1/odom 100"/>
+
+		<node pkg="tf" type="static_transform_publisher" name="obs_2_trans" args="0.0 0 0 0 0 0 box_2_base_footprint box_2 100"/>
+		<node pkg="tf" type="static_transform_publisher" name="obs_2_odom_trans" args="0.0 0 0 0 0 0 world obs_2/odom 100"/>
+
+		<node pkg="tf" type="static_transform_publisher" name="obs_3_trans" args="0.0 0 0 0 0 0 box_3_base_footprint box_3 100"/>
+		<node pkg="tf" type="static_transform_publisher" name="obs_3_odom_trans" args="0.0 0 0 0 0 0 world obs_3/odom 100"/>
+
+		<node pkg="tf" type="static_transform_publisher" name="target_trans" args="0.0 0 1.5 0 0 0 target/base_footprint pillar_box 100"/>
+    <node pkg="tf" type="static_transform_publisher" name="pillar_to_arrow_trans" args="0.2 0 1.5 0 0 0 pillar_box arrow 100"/>
+    <node pkg="tf" type="static_transform_publisher" name="target_odom_trans" args="0.0 0 0 0 0 0 world target/odom 100"/>
+
+
+<param name="robot_description" command="cat $(arg drone)" />
+<node name="$(arg drone_name)_urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+args="-urdf -x $(arg x_target) -y $(arg y_target) -z $(arg z_target) -R $(arg roll_target) -P $(arg pitch_target) -Y $(arg yaw_target) -model $(arg drone_name) -param robot_description"/>
+	
+
+	<arg name="target_pillar" default="target_pillar" />
+	<!-- <arg name="target" default="$(find target_tracker)/urdf/target.urdf" /> -->
+
+
+  <arg name= "real_target" default = "true"/> 
+  <!--Octomap bt file path if any-->
+  <!--If we are going to load pre-existing map from bt file-->
+  <!--Else, we build from sensor-->
+
+  <arg name="enable_logging" default="false" />
+  <arg name="enable_ground_truth" default="false" />
+  <arg name="log_file" default="$(arg mav_name)" />  
+  
+  <env name="GAZEBO_MODEL_PATH" value="${GAZEBO_MODEL_PATH}:$(find rotors_gazebo)/models"/>
+  <env name="GAZEBO_RESOURCE_PATH" value="${GAZEBO_RESOURCE_PATH}:$(find rotors_gazebo)/models"/>
+   
+   
+     <!-- world generation -->
+
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find target_tracker)/worlds/$(arg world_name).world" />
+    <arg name="paused" value="false"/> <!--if this enabled, ros time paused also-->
+    <arg name="gui" value="true"/> 
+    </include>
+
+    <!--target spawn at defined position -->
+    	<group if = "$( arg real_target)" ns ="$(arg target_name)">
+      <param name="target_description" command="cat $(arg target)" />
+        <node name="$(arg target_pillar)_urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+        args="-urdf -x $(arg target_x) -y $(arg target_y) -z 0 -R $(arg target_roll) -P $(arg target_pitch) -Y $(arg target_yaw) -model $(arg target_pillar) -param target_description"/> 
+    </group>
+     <!-- group name/MAV spawn at origin -->
+
+	<group ns ="$(arg mav_name)">
+
+		<include file="$(find rotors_gazebo)/launch/spawn_mav.launch">
+		<arg name="x" value="$(arg chaser_x)" />
+		<arg name="y" value="$(arg chaser_y)" />
+		<arg name="Y" value="$(arg chaser_yaw)" />
+
+		<arg name="mav_name" value="$(arg mav_name)" />
+		<arg name="model" value="$(find rotors_description)/urdf/mav_with_vi_sensor.gazebo"/>
+		<arg name="enable_logging" value="$(arg enable_logging)" />
+		<arg name="enable_ground_truth" value="$(arg enable_ground_truth)" />
+		<arg name="log_file" value="$(arg log_file)"/>
+		</include>
+
+		<!--state_publisher-->
+		<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+		<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+		
+		<!--controller-->
+		<node name="lee_position_controller_node" pkg="rotors_control" type="lee_position_controller_node" output="screen">
+		<rosparam command="load" file="$(find rotors_gazebo)/resource/lee_controller_$(arg mav_name).yaml" />
+		<rosparam command="load" file="$(find rotors_gazebo)/resource/$(arg mav_name).yaml" />
+		<remap from="odometry" to="odometry_sensor1/odometry" />		
+		</node>
+    </group>
+
+	
+
+
+	<!-- tf mapping -->
+	<include file = "$(find gazebo2rviz)/launch/gazebo2tf.launch"/>
+
+	<group ns = "tf_mapping">
+		<node pkg="tf" type="static_transform_publisher" name="tf_mapper_mav" args="0 0 0 0 0 0 /$(arg mav_name)__$(arg mav_name)/base_link /$(arg mav_name)/base_link 100" />
+		<!-- <node pkg="tf" type="static_transform_publisher" name="tf_mapper_target" args="0 0 0 0 0 0 /turtlebot3_burger__base_footprint /turtlebot3_burger__base_footprint 100" /> -->
+	</group>
+
+
+<!-- tf 2 pose for target  -->
+<node if = "$(arg real_target)"   pkg="auto_chaser" type="tf2poseStamped_node" name="tf2pose" output="screen" >
+   		<param name="~map_frame" value="world" />
+		<param name="~base_frame" value="/target_pillar__pillar_box_base_footprint" />
+		<param name="~output_pose_topic" value="/target_pose" />
+			  
+</node>
+
+
+	
+	<!-- octomap server -->
+	<node pkg="octomap_server" type="octomap_tracking_server_node" name="octomap_talker" output="screen" args="$(find target_tracker)/worlds/$(arg world_name).bt"> 
+	
+
+	<!--node pkg="octomap_server" type="octomap_tracking_server_node" name="octomap_talker" output="screen"-->
+
+		<param name="resolution" value="0.25" />
+		<param name="frame_id" type="string" value="world" />
+		<param name="sensor_model/max_range" value="4.0" />
+		<param name="save_directory" value="$(optenv OCTOMAP_SAVE_DIR ./)" />
+		<param name="track_changes" value="true"/>
+		<param name="listen_changes" value="false"/>
+		<param name="topic_changes" value="/octomap_tracking_server/changeset" />
+		<!-- added by JBS -->
+		
+		<param name="height_map" value="false" />
+		
+		<param name="color/r" value="0.4" />
+		<param name="color/g" value="0.4" />
+		<param name="color/b" value="0.4" />
+		<param name="color/a" value="0.3" />
+		
+		<param name="occupancy_max_z" value="" />
+		<param name="occupancy_min_z" value="0.2" />
+		<param name="filter_ground" value="true" />
+		<param name="base_frame_id" value="/world" />
+		
+		<!--param name="change_id_frame" value="$(arg changeIdFrame)" /-->
+		<param name="min_change_pub" value="0" />
+		<!--In case of no bt file, let's -->
+		<!--remap from="cloud_in" to="$(arg mav_name)/vi_sensor/camera_depth/depth/points" /-->
+	</node>
+
+	
+
+ 	<!--node name="rviz" pkg="rviz" type="rviz" args="-d $(find auto_chaser)/rviz/gazebo.rviz"/-->
+
+</launch>
+

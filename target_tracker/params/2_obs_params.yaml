@@ -1,0 +1,739 @@
+#////////////////////// Two obs
+
+# #Config_1
+# Params:
+#   prob_data.num_obs : 3
+#   prob_data.num_samples : 100
+#   prob_data.num : 100
+#   prob_data.nvar : 11
+#   prob_data.weight_smoothness : 50.0
+
+#   prob_data.x_min : -4.0
+#   prob_data.x_max :  4.0
+#   prob_data.vx_min : -1.0
+#   prob_data.vx_max : 1.0
+#   prob_data.ax_min : -2.0
+#   prob_data.ax_max : 2.0
+
+#   prob_data.y_min : -3.0
+#   prob_data.y_max :  3.0
+#   prob_data.vy_min : -1.0
+#   prob_data.vy_max : 1.0
+#   prob_data.ay_min : -2.0
+#   prob_data.ay_max : 2.0
+
+#   sim_data.x_init : -2.0
+#   sim_data.vx_init : 0.0
+#   sim_data.ax_init : 0.0
+
+#   sim_data.y_init : 0.0
+#   sim_data.vy_init : 0.0
+#   sim_data.ay_init : 0.0
+
+
+#   sim_data.z_init : 1.0
+#   sim_data.vz_init : 0.0
+#   sim_data.az_init : 0.0
+
+#   sim_data.vx_fin : 0.0
+#   sim_data.vy_fin : 0.0
+#   sim_data.vz_fin : 0.0
+
+#   sim_data.ax_fin : 0.0
+#   sim_data.ay_fin : 0.0
+#   sim_data.az_fin : 0.0
+
+#   sim_data.x_fin : 3.0
+#   sim_data.y_fin : 1.0
+
+#   sim_data.alpha_init : 0.0
+#   sim_data.alphadot_init : 0.0
+
+#   sim_data.x_obs_1_init : -1.5
+#   sim_data.y_obs_1_init : -2.0
+#   sim_data.x_obs_2_init : -0.5
+#   sim_data.y_obs_2_init : 2.5
+#   sim_data.obs_1_vx : 0.0
+#   sim_data.obs_1_vy : 0.3
+#   sim_data.obs_2_vx : 0.3
+#   sim_data.obs_2_vy : -0.3
+
+#   prob_data.t_update : 0.005
+#   prob_data.t_up : 0.01
+#   prob_data.mpc_iter : 10000
+#   prob_data.t_fin : 10.0
+#   maxiter: 1
+
+#   prob_data.rho_obs : 0.000001
+#   prob_data.rho_occ : 1.0
+#   prob_data.rho_ineq : 2.0
+
+#   obs_velocity_publisher_delay : 0.0
+#   mpc_delay: 0
+#   drone_x: -2.0
+#   drone_y : 0.0
+#   delta_factor: 1.1
+
+# Config_2
+Params:
+  prob_data.num_obs : 3
+  prob_data.num_samples : 100
+  prob_data.num : 100
+  prob_data.nvar : 11
+  prob_data.weight_smoothness : 50.0
+
+  prob_data.x_min : -4.0
+  prob_data.x_max :  4.0
+  prob_data.vx_min : -1.0
+  prob_data.vx_max : 1.0
+  prob_data.ax_min : -2.0
+  prob_data.ax_max : 2.0
+
+  prob_data.y_min : -3.0
+  prob_data.y_max :  3.0
+  prob_data.vy_min : -1.0
+  prob_data.vy_max : 1.0
+  prob_data.ay_min : -2.0
+  prob_data.ay_max : 2.0
+
+  sim_data.x_init : -1.0
+  sim_data.vx_init : 0.0
+  sim_data.ax_init : 0.0
+
+  sim_data.y_init : 0.0
+  sim_data.vy_init : 0.0
+  sim_data.ay_init : 0.0
+
+
+  sim_data.z_init : 1.0
+  sim_data.vz_init : 0.0
+  sim_data.az_init : 0.0
+
+  sim_data.vx_fin : 0.0
+  sim_data.vy_fin : 0.0
+  sim_data.vz_fin : 0.0
+
+  sim_data.ax_fin : 0.0
+  sim_data.ay_fin : 0.0
+  sim_data.az_fin : 0.0
+
+  sim_data.x_fin : 3.0
+  sim_data.y_fin : 1.0
+
+  sim_data.alpha_init : 0.0
+  sim_data.alphadot_init : 0.0
+
+  sim_data.x_obs_1_init : 0.6
+  sim_data.y_obs_1_init : 0.6
+
+  sim_data.x_obs_2_init : 1
+  sim_data.y_obs_2_init : -1.5
+
+
+  sim_data.obs_1_vx : 0.4
+  sim_data.obs_1_vy : -0.4
+
+  sim_data.obs_2_vx : 0.3
+  sim_data.obs_2_vy : -0.3
+
+  prob_data.t_update : 0.005
+  prob_data.t_up : 0.01
+  prob_data.mpc_iter : 10000
+  prob_data.t_fin : 10.0
+  maxiter: 1
+
+  prob_data.rho_obs : 0.000001
+  prob_data.rho_occ : 1.0
+  prob_data.rho_ineq : 2.0
+
+  obs_velocity_publisher_delay : 0.0
+  mpc_delay: 0.0
+  drone_x: -1.0
+  drone_y : 0.0
+  delta_factor: 1.1
+
+  bot_1_vx : 2
+  bot_1_vy : 0.0
+
+  bot_2_vx : 2
+  bot_2_vy : 0.0
+
+
+##Config_3
+# Params:
+#   prob_data.num_obs : 3
+#   prob_data.num_samples : 100
+#   prob_data.num : 100
+#   prob_data.nvar : 11
+#   prob_data.weight_smoothness : 50.0
+
+#   prob_data.x_min : -4.0
+#   prob_data.x_max :  4.0
+#   prob_data.vx_min : -1.0
+#   prob_data.vx_max : 1.0
+#   prob_data.ax_min : -2.0
+#   prob_data.ax_max : 2.0
+
+#   prob_data.y_min : -3.0
+#   prob_data.y_max :  3.0
+#   prob_data.vy_min : -1.0
+#   prob_data.vy_max : 1.0
+#   prob_data.ay_min : -2.0
+#   prob_data.ay_max : 2.0
+
+#   sim_data.x_init : -2.0
+#   sim_data.vx_init : 0.0
+#   sim_data.ax_init : 0.0
+
+#   sim_data.y_init : 0.0
+#   sim_data.vy_init : 0.0
+#   sim_data.ay_init : 0.0
+
+
+#   sim_data.z_init : 1.0
+#   sim_data.vz_init : 0.0
+#   sim_data.az_init : 0.0
+
+#   sim_data.vx_fin : 0.0
+#   sim_data.vy_fin : 0.0
+#   sim_data.vz_fin : 0.0
+
+#   sim_data.ax_fin : 0.0
+#   sim_data.ay_fin : 0.0
+#   sim_data.az_fin : 0.0
+
+#   sim_data.x_fin : 3.0
+#   sim_data.y_fin : 1.0
+
+#   sim_data.alpha_init : 0.0
+#   sim_data.alphadot_init : 0.0
+
+#   sim_data.x_obs_1_init : -1.5
+#   sim_data.y_obs_1_init : -2.5
+
+#   sim_data.x_obs_2_init : -0.5
+#   sim_data.y_obs_2_init : 1.5
+
+
+#   sim_data.obs_1_vx : 0.6
+#   sim_data.obs_1_vy : 0.0
+
+#   sim_data.obs_2_vx : 0.3
+#   sim_data.obs_2_vy : -0.3
+
+#   prob_data.t_update : 0.005
+#   prob_data.t_up : 0.01
+#   prob_data.mpc_iter : 10000
+#   prob_data.t_fin : 10.0
+#   maxiter: 1
+
+#   prob_data.rho_obs : 0.000001
+#   prob_data.rho_occ : 1.0
+#   prob_data.rho_ineq : 2.0
+
+#   obs_velocity_publisher_delay : 0.0
+#   mpc_delay: 0.0
+#   drone_x: -2.0
+#   drone_y : 0.0
+#   delta_factor: 1.1
+
+  # bot_1_vx : 2
+  # bot_1_vy : 0.0
+
+  # bot_2_vx : 2
+  # bot_2_vy : 0.0
+
+##Config_4
+# Params:
+#   prob_data.num_obs : 3
+#   prob_data.num_samples : 100
+#   prob_data.num : 100
+#   prob_data.nvar : 11
+#   prob_data.weight_smoothness : 50.0
+
+#   prob_data.x_min : -4.0
+#   prob_data.x_max :  4.0
+#   prob_data.vx_min : -1.0
+#   prob_data.vx_max : 1.0
+#   prob_data.ax_min : -2.0
+#   prob_data.ax_max : 2.0
+
+#   prob_data.y_min : -3.0
+#   prob_data.y_max :  3.0
+#   prob_data.vy_min : -1.0
+#   prob_data.vy_max : 1.0
+#   prob_data.ay_min : -2.0
+#   prob_data.ay_max : 2.0
+
+#   sim_data.x_init : -2.0
+#   sim_data.vx_init : 0.0
+#   sim_data.ax_init : 0.0
+
+#   sim_data.y_init : 0.0
+#   sim_data.vy_init : 0.0
+#   sim_data.ay_init : 0.0
+
+
+#   sim_data.z_init : 1.0
+#   sim_data.vz_init : 0.0
+#   sim_data.az_init : 0.0
+
+#   sim_data.vx_fin : 0.0
+#   sim_data.vy_fin : 0.0
+#   sim_data.vz_fin : 0.0
+
+#   sim_data.ax_fin : 0.0
+#   sim_data.ay_fin : 0.0
+#   sim_data.az_fin : 0.0
+
+#   sim_data.x_fin : 3.0
+#   sim_data.y_fin : 1.0
+
+#   sim_data.alpha_init : 0.0
+#   sim_data.alphadot_init : 0.0
+
+#   sim_data.x_obs_1_init : -1
+#   sim_data.y_obs_1_init : 4
+
+#   sim_data.x_obs_2_init : 4
+#   sim_data.y_obs_2_init : 4
+
+
+#   sim_data.obs_1_vx : 0.3
+#   sim_data.obs_1_vy : -0.5
+
+#   sim_data.obs_2_vx : -0.3
+#   sim_data.obs_2_vy : -0.3
+
+#   prob_data.t_update : 0.005
+#   prob_data.t_up : 0.01
+#   prob_data.mpc_iter : 10000
+#   prob_data.t_fin : 10.0
+#   maxiter: 1
+
+#   prob_data.rho_obs : 0.000001
+#   prob_data.rho_occ : 1.0
+#   prob_data.rho_ineq : 2.0
+
+#   obs_velocity_publisher_delay : 0.0
+#   mpc_delay: 0.0
+#   drone_x: -2.0
+#   drone_y : 0.0
+#   delta_factor: 1.1
+
+#   bot_1_vx : 2
+#   bot_1_vy : 0.0
+
+#   bot_2_vx : 2
+#   bot_2_vy : 0.0
+
+# #Config_5
+# Params:
+#   prob_data.num_obs : 3
+#   prob_data.num_samples : 100
+#   prob_data.num : 100
+#   prob_data.nvar : 11
+#   prob_data.weight_smoothness : 50.0
+
+#   prob_data.x_min : -4.0
+#   prob_data.x_max :  4.0
+#   prob_data.vx_min : -1.0
+#   prob_data.vx_max : 1.0
+#   prob_data.ax_min : -2.0
+#   prob_data.ax_max : 2.0
+
+#   prob_data.y_min : -3.0
+#   prob_data.y_max :  3.0
+#   prob_data.vy_min : -1.0
+#   prob_data.vy_max : 1.0
+#   prob_data.ay_min : -2.0
+#   prob_data.ay_max : 2.0
+
+#   sim_data.x_init : -2.0
+#   sim_data.vx_init : 0.0
+#   sim_data.ax_init : 0.0
+
+#   sim_data.y_init : 0.0
+#   sim_data.vy_init : 0.0
+#   sim_data.ay_init : 0.0
+
+
+#   sim_data.z_init : 1.0
+#   sim_data.vz_init : 0.0
+#   sim_data.az_init : 0.0
+
+#   sim_data.vx_fin : 0.0
+#   sim_data.vy_fin : 0.0
+#   sim_data.vz_fin : 0.0
+
+#   sim_data.ax_fin : 0.0
+#   sim_data.ay_fin : 0.0
+#   sim_data.az_fin : 0.0
+
+#   sim_data.x_fin : 3.0
+#   sim_data.y_fin : 1.0
+
+#   sim_data.alpha_init : 0.0
+#   sim_data.alphadot_init : 0.0
+
+#   sim_data.x_obs_1_init : -1.5
+#   sim_data.y_obs_1_init : 4.5
+
+#   sim_data.x_obs_2_init : -0.5
+#   sim_data.y_obs_2_init : 2.5
+
+
+#   sim_data.obs_1_vx : 0.4
+#   sim_data.obs_1_vy : -0.4
+
+#   sim_data.obs_2_vx : 0.3
+#   sim_data.obs_2_vy : -0.3
+
+#   prob_data.t_update : 0.005
+#   prob_data.t_up : 0.01
+#   prob_data.mpc_iter : 10000
+#   prob_data.t_fin : 10.0
+#   maxiter: 1
+
+#   prob_data.rho_obs : 0.000001
+#   prob_data.rho_occ : 1.0
+#   prob_data.rho_ineq : 2.0
+
+#   obs_velocity_publisher_delay : 0.0
+#   mpc_delay: 0.0
+#   drone_x: -2.0
+#   drone_y : 0.0
+#   delta_factor: 1.1
+
+#   bot_1_vx : 2
+#   bot_1_vy : 0.0
+
+#   bot_2_vx : 2
+#   bot_2_vy : 0.0
+
+
+#Config_6
+# Params:
+#   prob_data.num_obs : 3
+#   prob_data.num_samples : 100
+#   prob_data.num : 100
+#   prob_data.nvar : 11
+#   prob_data.weight_smoothness : 50.0
+
+#   prob_data.x_min : -4.0
+#   prob_data.x_max :  4.0
+#   prob_data.vx_min : -1.0
+#   prob_data.vx_max : 1.0
+#   prob_data.ax_min : -2.0
+#   prob_data.ax_max : 2.0
+
+#   prob_data.y_min : -3.0
+#   prob_data.y_max :  3.0
+#   prob_data.vy_min : -1.0
+#   prob_data.vy_max : 1.0
+#   prob_data.ay_min : -2.0
+#   prob_data.ay_max : 2.0
+
+#   sim_data.x_init : -2.0
+#   sim_data.vx_init : 0.0
+#   sim_data.ax_init : 0.0
+
+#   sim_data.y_init : 0.0
+#   sim_data.vy_init : 0.0
+#   sim_data.ay_init : 0.0
+
+
+#   sim_data.z_init : 1.0
+#   sim_data.vz_init : 0.0
+#   sim_data.az_init : 0.0
+
+#   sim_data.vx_fin : 0.0
+#   sim_data.vy_fin : 0.0
+#   sim_data.vz_fin : 0.0
+
+#   sim_data.ax_fin : 0.0
+#   sim_data.ay_fin : 0.0
+#   sim_data.az_fin : 0.0
+
+#   sim_data.x_fin : 3.0
+#   sim_data.y_fin : 1.0
+
+#   sim_data.alpha_init : 0.0
+#   sim_data.alphadot_init : 0.0
+
+#   sim_data.x_obs_1_init : -1.0
+#   sim_data.y_obs_1_init : -4.0
+
+#   sim_data.x_obs_2_init : 4
+#   sim_data.y_obs_2_init : 4
+
+
+#   sim_data.obs_1_vx : 0.8
+#   sim_data.obs_1_vy : 0
+
+#   sim_data.obs_2_vx : -0.8
+#   sim_data.obs_2_vy : -0.8
+
+#   prob_data.t_update : 0.005
+#   prob_data.t_up : 0.01
+#   prob_data.mpc_iter : 10000
+#   prob_data.t_fin : 10.0
+#   maxiter: 1
+
+#   prob_data.rho_obs : 0.000001
+#   prob_data.rho_occ : 1.0
+#   prob_data.rho_ineq : 2.0
+
+#   obs_velocity_publisher_delay : 0.0
+#   mpc_delay: 0.0
+#   drone_x: -2.0
+#   drone_y : 0.0
+#   delta_factor: 1.1
+
+#   bot_1_vx : 2
+#   bot_1_vy : 0.0
+
+#   bot_2_vx : 2
+#   bot_2_vy : 0.0
+
+#Config_7
+# Params:
+#   prob_data.num_obs : 3
+#   prob_data.num_samples : 100
+#   prob_data.num : 100
+#   prob_data.nvar : 11
+#   prob_data.weight_smoothness : 50
+
+#   prob_data.x_min : -4.0
+#   prob_data.x_max :  4.0
+#   prob_data.vx_min : -1.0
+#   prob_data.vx_max : 1.0
+#   prob_data.ax_min : -2.0
+#   prob_data.ax_max : 2.0
+
+#   prob_data.y_min : -3.0
+#   prob_data.y_max :  3.0
+#   prob_data.vy_min : -1.0
+#   prob_data.vy_max : 1.0
+#   prob_data.ay_min : -2.0
+#   prob_data.ay_max : 2.0
+
+#   sim_data.x_init : -2.0
+#   sim_data.vx_init : 0.0
+#   sim_data.ax_init : 0.0
+
+#   sim_data.y_init : 2.0
+#   sim_data.vy_init : 0.0
+#   sim_data.ay_init : 0.0
+
+
+#   sim_data.z_init : 1.0
+#   sim_data.vz_init : 0.0
+#   sim_data.az_init : 0.0
+
+#   sim_data.vx_fin : 0.0
+#   sim_data.vy_fin : 0.0
+#   sim_data.vz_fin : 0.0
+
+#   sim_data.ax_fin : 0.0
+#   sim_data.ay_fin : 0.0
+#   sim_data.az_fin : 0.0
+
+#   sim_data.x_fin : 3.0
+#   sim_data.y_fin : 1.0
+
+#   sim_data.alpha_init : -.278
+#   sim_data.alphadot_init : 0.0
+
+#   sim_data.x_obs_1_init : 3.0
+#   sim_data.y_obs_1_init : 3.0
+
+#   sim_data.x_obs_2_init : 0
+#   sim_data.y_obs_2_init : -1
+
+
+#   sim_data.obs_1_vx : -0.4
+#   sim_data.obs_1_vy : 0
+
+#   sim_data.obs_2_vx : 0.3
+#   sim_data.obs_2_vy : 0.3
+
+#   prob_data.t_update : 0.005
+#   prob_data.t_up : 0.01
+#   prob_data.mpc_iter : 10000
+#   prob_data.t_fin : 10.0
+#   maxiter: 1
+
+#   prob_data.rho_obs : 0.000001
+#   prob_data.rho_occ : 1
+#   prob_data.rho_ineq : 2.0
+
+#   obs_velocity_publisher_delay : 0.0
+#   mpc_delay: 0.0
+#   drone_x: -2
+#   drone_y : 2
+#   delta_factor: 1.1
+
+#   bot_1_vx : 2
+#   bot_1_vy : 0.0
+
+#   bot_2_vx : 2
+#   bot_2_vy : 0.0
+
+#Config_8
+# Params:
+#   prob_data.num_obs : 3
+#   prob_data.num_samples : 100
+#   prob_data.num : 100
+#   prob_data.nvar : 11
+#   prob_data.weight_smoothness : 50
+
+#   prob_data.x_min : -4.0
+#   prob_data.x_max :  4.0
+#   prob_data.vx_min : -1.0
+#   prob_data.vx_max : 1.0
+#   prob_data.ax_min : -2.0
+#   prob_data.ax_max : 2.0
+
+#   prob_data.y_min : -3.0
+#   prob_data.y_max :  3.0
+#   prob_data.vy_min : -1.0
+#   prob_data.vy_max : 1.0
+#   prob_data.ay_min : -2.0
+#   prob_data.ay_max : 2.0
+
+#   sim_data.x_init : -2.0
+#   sim_data.vx_init : 0.0
+#   sim_data.ax_init : 0.0
+
+#   sim_data.y_init : 2.0
+#   sim_data.vy_init : 0.0
+#   sim_data.ay_init : 0.0
+
+
+#   sim_data.z_init : 1.0
+#   sim_data.vz_init : 0.0
+#   sim_data.az_init : 0.0
+
+#   sim_data.vx_fin : 0.0
+#   sim_data.vy_fin : 0.0
+#   sim_data.vz_fin : 0.0
+
+#   sim_data.ax_fin : 0.0
+#   sim_data.ay_fin : 0.0
+#   sim_data.az_fin : 0.0
+
+#   sim_data.x_fin : 3.0
+#   sim_data.y_fin : 1.0
+
+#   sim_data.alpha_init : -.278
+#   sim_data.alphadot_init : 0.0
+
+#   sim_data.x_obs_1_init : 1.0
+#   sim_data.y_obs_1_init : 3.0
+
+#   sim_data.x_obs_2_init : 4
+#   sim_data.y_obs_2_init : -2
+
+
+#   sim_data.obs_1_vx : 0.0
+#   sim_data.obs_1_vy : -0.4
+
+#   sim_data.obs_2_vx : -0.3
+#   sim_data.obs_2_vy : 0.3
+
+#   prob_data.t_update : 0.005
+#   prob_data.t_up : 0.01
+#   prob_data.mpc_iter : 10000
+#   prob_data.t_fin : 10.0
+#   maxiter: 1
+
+#   prob_data.rho_obs : 0.000001
+#   prob_data.rho_occ : 1
+#   prob_data.rho_ineq : 2.0
+
+#   obs_velocity_publisher_delay : 0.0
+#   mpc_delay: 0.0
+#   drone_x: -2
+#   drone_y : 2
+#   delta_factor: 1.1
+
+
+
+###Config_9
+# Params:
+#   prob_data.num_obs : 3
+#   prob_data.num_samples : 100
+#   prob_data.num : 100
+#   prob_data.nvar : 11
+#   prob_data.weight_smoothness : 50
+
+#   prob_data.x_min : -4.0
+#   prob_data.x_max :  4.0
+#   prob_data.vx_min : -1.0
+#   prob_data.vx_max : 1.0
+#   prob_data.ax_min : -2.0
+#   prob_data.ax_max : 2.0
+
+#   prob_data.y_min : -3.0
+#   prob_data.y_max :  3.0
+#   prob_data.vy_min : -1.0
+#   prob_data.vy_max : 1.0
+#   prob_data.ay_min : -2.0
+#   prob_data.ay_max : 2.0
+
+#   sim_data.x_init : -2.0
+#   sim_data.vx_init : 0.0
+#   sim_data.ax_init : 0.0
+
+#   sim_data.y_init : 2.0
+#   sim_data.vy_init : 0.0
+#   sim_data.ay_init : 0.0
+
+
+#   sim_data.z_init : 1.0
+#   sim_data.vz_init : 0.0
+#   sim_data.az_init : 0.0
+
+#   sim_data.vx_fin : 0.0
+#   sim_data.vy_fin : 0.0
+#   sim_data.vz_fin : 0.0
+
+#   sim_data.ax_fin : 0.0
+#   sim_data.ay_fin : 0.0
+#   sim_data.az_fin : 0.0
+
+#   sim_data.x_fin : 3.0
+#   sim_data.y_fin : 1.0
+
+#   sim_data.alpha_init : -.278
+#   sim_data.alphadot_init : 0.0
+
+#   sim_data.x_obs_1_init : 3.0
+#   sim_data.y_obs_1_init : 3.0
+
+#   sim_data.x_obs_2_init : 2
+#   sim_data.y_obs_2_init : 3
+
+
+#   sim_data.obs_1_vx : 0.0
+#   sim_data.obs_1_vy : -0.5
+
+#   sim_data.obs_2_vx : 0
+#   sim_data.obs_2_vy : -0.5
+
+#   prob_data.t_update : 0.005
+#   prob_data.t_up : 0.01
+#   prob_data.mpc_iter : 10000
+#   prob_data.t_fin : 10.0
+#   maxiter: 1
+
+#   prob_data.rho_obs : 0.000001
+#   prob_data.rho_occ : 1
+#   prob_data.rho_ineq : 2.0
+
+#   obs_velocity_publisher_delay : 0.0
+#   mpc_delay: 0.0
+#   drone_x: -2
+#   drone_y : 2
+#   delta_factor: 1.1
