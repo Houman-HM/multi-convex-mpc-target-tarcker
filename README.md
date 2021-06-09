@@ -3,10 +3,10 @@ This repository containes the impelmetation of MPC algorithm proposed in Real-Ti
 
 ## Installation procedure
 
-#Dependecies:
-[AutoChaser](https://github.com/icsl-Jeon/traj_gen_vis)
-[eigen_quad_prog](https://github.com/jrl-umi3218/eigen-quadprog)
-[bebop_simulator](https://github.com/gstavrinos/bebop_simulator)
+# Dependecies:
+* [AutoChaser](https://github.com/icsl-Jeon/traj_gen_vis)
+* [eigen_quad_prog](https://github.com/jrl-umi3218/eigen-quadprog)
+* [bebop_simulator](https://github.com/gstavrinos/bebop_simulator)
 ``` 
 cd your_catkin_ws/src
 git clone https://github.com/Houman-HM/multi-convex-mpc-target-tarcker.git
