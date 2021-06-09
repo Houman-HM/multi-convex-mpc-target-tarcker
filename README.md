@@ -1,4 +1,13 @@
 # multi-convex-mpc-target-tarcker
+This repository containes the impelmetation of MPC algorithm proposed in Real-Time Multi-Convex Model Predictive Control for Occlusion-Free Target Tracking with Quadrotors paper.
+
+## Installation procedure
+``` 
+cd your_catkin_ws/src
+git clone https://github.com/Houman-HM/multi-convex-mpc-target-tarcker.git
+cd .. && catkin build
+```
+
 ## Running Nageli implmentation using ACADO
 #### Running generated ACADO code
 * Edit global variables in ```test.c```: maker position, obstacles initial position and velocity, quadrotor's initial position, weights
