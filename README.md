@@ -21,7 +21,7 @@ For example in order to run the MPC for tracking a target in a world with 6 obst
 
 ##### In the first terminal:
 ```
-rosrun target_tracker 6_cylinder_world_dynamic.launch
+roslaunch target_tracker 6_cylinder_world_dynamic.launch
 ```
 ##### In the second terminal:
 ```
