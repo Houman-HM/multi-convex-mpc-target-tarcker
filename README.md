@@ -27,7 +27,7 @@ rosrun target_tracker 6_cylinder_world_dynamic.launch
 ```
 rosrun target_tracker mpc_tracker_6_obs_ros_node
 ```
-Now, you can start teleoperating the target by publishing velocities on /target/cmd_vel topic. The drone should start following the target as you are teleoperating the target.
+Now, you can start teleoperating the target by publishing velocities on ``` /target/cmd_vel ``` topic. The drone should start following the target as you are teleoperating the target.
 ## Running Nageli implmentation using ACADO
 #### Running generated ACADO code
 * Edit global variables in ```test.c```: maker position, obstacles initial position and velocity, quadrotor's initial position, weights
