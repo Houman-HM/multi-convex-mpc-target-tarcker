@@ -19,11 +19,11 @@ source your_catkin_ws/devel/setup.bash
 There are several launch files for different Gazebo setups for different number of obstacles. You can launch any of Gazebo worlds and run the algorithm by running the corresponding MPC node.
 For example in order to run the MPC for tracking a target in a world with 6 obstacles, follow the procedure below:
 
-#####In the first terminal:
+##### In the first terminal:
 ```
 rosrun target_tracker 6_cylinder_world_dynamic.launch
 ```
-#####In the second terminal:
+##### In the second terminal:
 ```
 rosrun target_tracker mpc_tracker_6_obs_ros_node
 ```
