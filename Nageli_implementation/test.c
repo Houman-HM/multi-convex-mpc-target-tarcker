@@ -42,12 +42,12 @@ www.acadotoolkit.org
 #define NY          ACADO_NY  /* Number of measurements/references on nodes 0..N - 1. */
 #define NYN         ACADO_NYN /* Number of measurements/references on node N. */
 #define N           ACADO_N   /* Number of intervals in the horizon. */
-#define MPC 		1
+#define MPC 		0
 #define VERBOSE		1 - MPC
 #define pi M_PI
 
 
-int NUM_STEPS = 5; // solver iterations
+int NUM_STEPS = 10; // solver iterations
 
 /* Global variables used by the solver. */
 ACADOvariables acadoVariables;
@@ -63,16 +63,16 @@ void fov_circle(double M, double rho, double xm, double ym, double x, double y);
 double vis_score(double x, double y, double xm, double ym, double xo, double yo);
 
 // change these variables
-double xo[] = {2.0, -1.0, 1.0}, 			// initial x-position of three obstacles 
-	   yo[] = {2.0, 2.0, -2.0},				// initial y-position of three obstacles
-	   velx[] = {-0.4, 0.3, 0.2},			// initial x-velocity of three obstacles
-	   vely[] = {-0.4, -0.6, 0.2},			// initial y-velocity of three obstacles
+double xo[] = {1.2, -3.0, 100.0}, 			// initial x-position of three obstacles 
+	   yo[] = {3.0, 1.0, 100.0},				// initial y-position of three obstacles
+	   velx[] = {-0.0, 0.0, 0.0},			// initial x-velocity of three obstacles
+	   vely[] = {-0.0, -0.0, 0.0},			// initial y-velocity of three obstacles
 	   ro[] = {0.6, 0.6, 0.6},				// radius of three obstacles
 	   WO = 100,							// occlusion cost weight
 	   WOBS = 70,							// obstacle avoidance weight
 	   WV = 50, WA = 1,						// weights of velocity and acceleration term (when occlusion-free state only then velocity term is invoked)
-	   X0 = -2, Y0 = 1,						// initial x,y position of quadrotor
-	   XM = 5, YM = 0;						// marker x,y position
+	   X0 = 0.0, Y0 = 0.0,						// initial x,y position of quadrotor
+	   XM = -1.0, YM = 5.0;						// marker x,y position
 
 double  dt = 0.1;							// planning resolution	
 
@@ -99,10 +99,14 @@ int main( )
 		acadoVariables.y[ i*NY + 2 ] = 0.0;		
 		acadoVariables.y[ i*NY + 3 ] = 0.0;		
 		acadoVariables.y[ i*NY + 4 ] = 0.0;		
-		acadoVariables.y[ i*NY + 5 ] = 0.0;
-		acadoVariables.y[ i*NY + 6 ] = 0.0;
-		acadoVariables.y[ i*NY + 7 ] = 0.0;				
+		acadoVariables.y[ i*NY + 5 ] = 0.0;			
 	}
+	acadoVariables.yN[ 0 ] = 5.0;
+	acadoVariables.yN[ 1 ] = 5.0;
+	acadoVariables.yN[ 2 ] = 0.0;
+	acadoVariables.yN[ 3 ] = 0.0;
+	acadoVariables.yN[ 4 ] = 0.0;
+	acadoVariables.yN[ 5 ] = 0.0;
 
 	double xm = XM, x_init = X0,
 		   ym = YM, y_init = Y0,
@@ -187,13 +191,28 @@ int main( )
 		}
 		else
 		{
-			fprintf(fp10, "Warm Up time = %f \n", te);
+			// fprintf(fp10, "Warm Up time = %f \n", te);
 			loop++;
 			//printf("Warm up %f \n", te);
 		}		
 		NUM_STEPS = 1;		
 		if(!MPC)
+		{
+			fp2 = fopen("x.txt","w");
+			fp3 = fopen("y.txt","w");
+
+			for (int i = 1; i < (N + 1); i++) 
+			{
+			
+				double x = acadoVariables.x[NX*i + 0];
+				double y = acadoVariables.x[NX*i + 1];
+				fprintf(fp2,"%f \n", x);
+				fprintf(fp3,"%f \n", y);
+			}
+
 			goto jump;
+		}
+			
 		
 		double a = sqrt(ax*ax + ay*ay);
 
@@ -300,13 +319,9 @@ void init_OD(double xm, double ym, double x0, double y0, double r0, double x1, d
 	  
 	  acadoVariables.od[i * NOD + 2] = x0;
 	  acadoVariables.od[i * NOD + 3] = y0;
-	  acadoVariables.od[i * NOD + 4] = r0;
-	  acadoVariables.od[i * NOD + 5] = x1;
-	  acadoVariables.od[i * NOD + 6] = y1;
-	  acadoVariables.od[i * NOD + 7] = r1;
-	  acadoVariables.od[i * NOD + 8] = x2;
-	  acadoVariables.od[i * NOD + 9] = y2;
-	  acadoVariables.od[i * NOD + 10] = r2;
+	  acadoVariables.od[i * NOD + 4] = x1;
+	  acadoVariables.od[i * NOD + 5] = y1;
+	  
 
 	  if(!MPC)
 	  {
@@ -339,17 +354,19 @@ void init_weights(double wobs, double wvx, double wvy, double wax, double way, d
 {
 	  for (int i = 0; i < N; i++)
 	  {
-			acadoVariables.W[NY*NY*i + (NY+1)*0] = wobs;
-    		acadoVariables.W[NY*NY*i + (NY+1)*1] = wobs;
-			acadoVariables.W[NY*NY*i + (NY+1)*2] = wobs;
-			acadoVariables.W[NY*NY*i + (NY+1)*3] = wvx;
-    		acadoVariables.W[NY*NY*i + (NY+1)*4] = wvy;
-    		acadoVariables.W[NY*NY*i + (NY+1)*5] = wax;
-    		acadoVariables.W[NY*NY*i + (NY+1)*6] = way;
-			acadoVariables.W[NY*NY*i + (NY+1)*7] = wo;
-			acadoVariables.W[NY*NY*i + (NY+1)*8] = wo;
-			acadoVariables.W[NY*NY*i + (NY+1)*9] = wo;
+			acadoVariables.W[NY*NY*i + (NY+1)*0] = 500; 				// smoothness
+    		acadoVariables.W[NY*NY*i + (NY+1)*1] = 500;					// smoothness
+			acadoVariables.W[NY*NY*i + (NY+1)*2] = 1;//1100;			// obs0
+			acadoVariables.W[NY*NY*i + (NY+1)*3] = 1;//1100;			// obs1
+    		acadoVariables.W[NY*NY*i + (NY+1)*4] = 1000;				// occ0
+    		acadoVariables.W[NY*NY*i + (NY+1)*5] = 1000;				// occ1
 	  }
+	  acadoVariables.WN[ (NY+1)*0 ] = 10000;
+	  acadoVariables.WN[ (NY+1)*1 ] = 10000;
+	  acadoVariables.WN[ (NY+1)*2 ] = 10000;
+	  acadoVariables.WN[ (NY+1)*3 ] = 10000;
+	  acadoVariables.WN[ (NY+1)*4 ] = 10000;
+	  acadoVariables.WN[ (NY+1)*5 ] = 10000;
 }
 
 

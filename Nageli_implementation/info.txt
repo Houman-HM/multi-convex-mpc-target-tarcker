@@ -1,2 +1,1 @@
-Warm Up time = 0.529024 
-Loop Time = 0.162385 
+Loop Time = 0.005688 

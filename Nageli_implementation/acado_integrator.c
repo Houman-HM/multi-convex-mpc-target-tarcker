@@ -145,11 +145,6 @@ acadoWorkspace.rk_xxx[58] = rk_eta[58];
 acadoWorkspace.rk_xxx[59] = rk_eta[59];
 acadoWorkspace.rk_xxx[60] = rk_eta[60];
 acadoWorkspace.rk_xxx[61] = rk_eta[61];
-acadoWorkspace.rk_xxx[62] = rk_eta[62];
-acadoWorkspace.rk_xxx[63] = rk_eta[63];
-acadoWorkspace.rk_xxx[64] = rk_eta[64];
-acadoWorkspace.rk_xxx[65] = rk_eta[65];
-acadoWorkspace.rk_xxx[66] = rk_eta[66];
 
 for (run1 = 0; run1 < 1; ++run1)
 {

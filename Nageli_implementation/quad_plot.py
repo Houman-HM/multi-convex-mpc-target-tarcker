@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
+from matplotlib.patches import Ellipse, Rectangle
 from numpy import*
 
 def visibility_score(x, y, xm, ym, xo, yo, beta):
@@ -86,8 +87,8 @@ def get_values():
 
 if __name__ == "__main__":
 	
-	xm = 5.0
-	ym = 0.0
+	xm = -1.0
+	ym = 5.0
 	
 	ao = 0.35+0.25
 
@@ -108,17 +109,24 @@ if __name__ == "__main__":
 		for i in range(0,len(x)):
 			
 			plt.clf()
-			plt.plot([-xlim, xlim, xlim, -xlim, -xlim], [ylim, ylim, -ylim, -ylim, ylim ])
+			# plt.plot([-xlim, xlim, xlim, -xlim, -xlim], [ylim, ylim, -ylim, -ylim, ylim ])
 			plt.plot([xm, x[i]], [ym, y[i]])
-			circle0 = plt.Circle((obsx0[i], obsy0[i]), ao, color='black', fill=True)
-			circle1 = plt.Circle((obsx1[i], obsy1[i]), ao, color='black', fill=True)
-			circle2 = plt.Circle((xm, ym), ao, color='black', fill=False, linestyle = '-')
-			circle3 = plt.Circle((obsx2[i], obsy2[i]), ao, color='black', fill=True)
+			# circle0 = plt.Circle((obsx0[i], obsy0[i]), ao, color='black', fill=True)
+			# circle1 = plt.Circle((obsx1[i], obsy1[i]), ao, color='black', fill=True)
+			# circle2 = plt.Circle((xm, ym), ao, color='black', fill=False, linestyle = '-')
+			# circle3 = plt.Circle((obsx2[i], obsy2[i]), ao, color='black', fill=True)
 			
-			score0 = visibility_score(x[i], y[i], xm, ym, obsx0[i], obsy0[i], 0)
-			score1 = visibility_score(x[i], y[i], xm, ym, obsx1[i], obsy1[i], 0)
-			score2 = visibility_score(x[i], y[i], xm, ym, obsx2[i], obsy2[i], 0)
-			plt.text(-5, -5, 'Score0 = %s\nScore1 = %s\nScore2 = %s' % (round(score0, 2), round(score1, 2), round(score2, 2)))
+			# circle0 = plt.Circle((1.2, 3.0), ao, color='black', fill=True)
+			# circle1 = plt.Circle((-3.0, 1.0), ao, color='black', fill=True)
+			circle0 = Ellipse(xy=[1.2, 3.0], width=1.6*2, height=0.6*2, angle=0)
+			circle1 = Ellipse(xy=[-3.0, 1.0], width=0.7*2, height=0.7*2, angle=0)
+
+			circle2 = plt.Circle((xm, ym), ao, color='black', fill=False, linestyle = '-')
+			
+			# score0 = visibility_score(x[i], y[i], xm, ym, obsx0[i], obsy0[i], 0)
+			# score1 = visibility_score(x[i], y[i], xm, ym, obsx1[i], obsy1[i], 0)
+			# score2 = visibility_score(x[i], y[i], xm, ym, obsx2[i], obsy2[i], 0)
+			# plt.text(-5, -5, 'Score0 = %s\nScore1 = %s\nScore2 = %s' % (round(score0, 2), round(score1, 2), round(score2, 2)))
 			"""fov0 = plt.Circle((x_c[i*10], y_c[i*10]), r_c[i*10], color='r', fill=False,  linewidth = 1.0)
 			fov1 = plt.Circle((x_c[i*10+1], y_c[i*10+1]), r_c[i*10+1], color='r', fill=False, linewidth = 1.0)
 			fov2 = plt.Circle((x_c[i*10+2], y_c[i*10+2]), r_c[i*10+2], color='r', fill=False, linewidth = 1.0)
@@ -135,7 +143,7 @@ if __name__ == "__main__":
 			ax.add_artist(circle0)
 			ax.add_artist(circle1)
 			ax.add_artist(circle2)
-			ax.add_artist(circle3)			
+			# ax.add_artist(circle3)			
 	
 			ax.scatter(x[i], y[i], linewidth=0.0)			
 
