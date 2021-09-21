@@ -361,12 +361,12 @@ void init_weights(double wobs, double wvx, double wvy, double wax, double way, d
     		acadoVariables.W[NY*NY*i + (NY+1)*4] = 1000;				// occ0
     		acadoVariables.W[NY*NY*i + (NY+1)*5] = 1000;				// occ1
 	  }
-	  acadoVariables.WN[ (NY+1)*0 ] = 10000;
-	  acadoVariables.WN[ (NY+1)*1 ] = 10000;
-	  acadoVariables.WN[ (NY+1)*2 ] = 10000;
-	  acadoVariables.WN[ (NY+1)*3 ] = 10000;
-	  acadoVariables.WN[ (NY+1)*4 ] = 10000;
-	  acadoVariables.WN[ (NY+1)*5 ] = 10000;
+	  acadoVariables.WN[ (NY+1)*0 ] = 10000;				// x
+	  acadoVariables.WN[ (NY+1)*1 ] = 10000;				// y
+	  acadoVariables.WN[ (NY+1)*2 ] = 10000;				// vx
+	  acadoVariables.WN[ (NY+1)*3 ] = 10000;				// vy
+	  acadoVariables.WN[ (NY+1)*4 ] = 10000;				// ax
+	  acadoVariables.WN[ (NY+1)*5 ] = 10000;				// ay
 }
 
 
