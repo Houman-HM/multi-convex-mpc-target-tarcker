@@ -1,5 +1,5 @@
 # multi-convex-mpc-target-tarcker
-This repository containes the impelmetation of MPC algorithm proposed in Real-Time Multi-Convex Model Predictive Control for Occlusion-Free Target Tracking with Quadrotors paper.
+This repository containes the impelmetation of MPC algorithm proposed in "Real-Time Multi-Convex Model Predictive Control for Occlusion-Free Target Tracking with Quadrotors" [paper](https://doi.org/10.1109/ACCESS.2022.3157977).
 
 # Dependecies:
 
